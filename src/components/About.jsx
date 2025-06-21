@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/SplitText";
+import { AudioLines, AudioWaveform, Text } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
@@ -150,7 +151,7 @@ const About = () => {
               title="Spilt the characters 🎢"
               role="button"
               tabIndex={0}
-            >01</a>
+            ><AudioWaveform /></a>
             <h1
               ref={textRef}
               className="split-me text-justify">A passionate QA/QC Engineer with a <br /> sharp eye for quality, precision, and software reliability.</h1>
@@ -169,7 +170,7 @@ const About = () => {
               title="Spilt the lines 🎢"
               role="button"
               tabIndex={1}
-            >02</a>
+            ><Text /></a>
             <h1
               ref={textRef}
               className="split-line">Behind every great product is a robust quality strategy. I specialize in designing those
@@ -190,7 +191,7 @@ const About = () => {
               title="Spilt the characters 🎢"
               role="button"
               tabIndex={2}
-            >03</a>
+            ><AudioWaveform /></a>
             <h1
               ref={textRef}
               className="split-me">Quality isn't a task — it's a discipline. I <br />
@@ -210,7 +211,7 @@ const About = () => {
               title="Spilt the words 🎢"
               role="button"
               tabIndex={3}
-            >04</a>
+            ><Text /></a>
             <h1
               ref={textRef}
               className="split-words">I'am working as a QA/QC Engineer in the ERP/HRMS enterprise level applications for 3+ years.</h1>
