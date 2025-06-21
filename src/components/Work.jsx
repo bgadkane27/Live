@@ -44,7 +44,7 @@ const Work = () => {
   return (
     <section className="w-full min-h-screen p-6 overflow-hidden relative">
       <img
-        src="/hero/right.svg"
+        src="/sections/right.svg"
         alt="background image"
         className="hidden sm:block absolute inset-0 w-full h-full object-contain z-0"
       />
@@ -71,7 +71,7 @@ const Work = () => {
               className="relative w-full h-auto group overflow-hidden rounded-xl flex flex-col gap-4 border border-slate-700"
             >           
               <img
-                src="/hero/left.svg"
+                src="/sections/left.svg"
                 alt="card background"
                 className="absolute inset-0 w-full h-full object-contain"
               />
