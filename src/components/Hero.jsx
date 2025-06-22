@@ -165,7 +165,7 @@ const Hero = () => {
           <p
             className="split-mine uppercase text-5xl sm:text-6xl md:text-[200px] leading-none text-center font-serif drop-shadow-xl drop-shadow-cyan-500/40"
           >
-            Baburao
+            Divyansh
           </p>
           {/* <img
             src="/hero/profile.jpeg"

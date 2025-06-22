@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/SplitText";
-import { AudioLines, AudioWaveform, Text } from "lucide-react";
+import { AudioWaveform, Text } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);

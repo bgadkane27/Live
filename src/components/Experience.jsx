@@ -1,12 +1,12 @@
-import React, { useRef, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { projects } from "../constants";
+import { experiences } from "../constants";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Work = () => {
+const Experience = () => {
   const cardsRef = useRef([]);
 
   useGSAP(() => {
@@ -40,7 +40,6 @@ const Work = () => {
     });
   }, []);
 
-
   return (
     <section className="w-full min-h-screen p-6 overflow-hidden relative">
       <img
@@ -64,12 +63,12 @@ const Work = () => {
           </p>
         </div>
         <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">
-          {projects.map((project, index) => (
+          {experiences.map((experience, index) => (
             <div
-              key={project.id}
+              key={experience.id}
               ref={(el) => (cardsRef.current[index] = el)}
               className="relative w-full h-auto group overflow-hidden rounded-xl flex flex-col gap-4 border border-slate-700"
-            >           
+            >
               <img
                 src="/sections/left.svg"
                 alt="card background"
@@ -78,12 +77,12 @@ const Work = () => {
 
               {/* Overlay for content */}
               <div className="relative z-10 p-4 h-full flex flex-col">
-                <h2 className="text-lg font-semibold">{project.title}</h2>
-                <p className="text-sm">{project.company_name}</p>
-                <p className="text-xs mb-2">{project.period}</p>
+                <h2 className="text-lg font-semibold">{experience.title}</h2>
+                <p className="text-sm">{experience.company_name}</p>
+                <p className="text-xs mb-2">{experience.period}</p>
                 <div className="">
                   <ul className="mt-2 space-y-2 mb-6">
-                    {project.points.map((point, pointIndex) => (
+                    {experience.points.map((point, pointIndex) => (
                       <li key={pointIndex} className="text-sm text-justify">
                         {point}
                       </li>
@@ -99,4 +98,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default Experience;
