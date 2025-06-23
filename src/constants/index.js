@@ -150,3 +150,30 @@ export const projects = [
   },
 ];
 
+export const contactLinks = [
+  {
+    id: 1,
+    label: "Phone",
+    value: "+91 9673929867",
+    link: "tel:+919673929867",
+  },
+  {
+    id: 2,
+    label: "Email",
+    value: "bgadkane@gmail.com",
+    link: "mailto:bgadkane@gmail.com",
+  },
+  {
+    id: 3,
+    label: "LinkedIn",
+    value: "linkedin.com/in/baburaoadkane",
+    link: "https://www.linkedin.com/in/baburao-adkane-443476250/",
+  },
+  {
+    id: 4,
+    label: "GitHub",
+    value: "github.com/bgadkane27",
+    link: "https://github.com/bgadkane27",
+  },
+];
+
