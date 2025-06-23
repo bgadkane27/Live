@@ -23,14 +23,14 @@ const Projects = () => {
         cardRef.current.forEach((card, i) => {
             gsap.fromTo(
                 card,
-                { y: 100, opacity: 0.5, scale: 0.85, rotateX: 15, skewY: 5 },
+                { y:80 , opacity: 0.5, scale: 0.85, rotateX: 15, skewY: 5 },
                 {
                     y: 0,
                     opacity: 1,
                     scale:1,
                     rotateX: 0,
                     skewY: 0,
-                    ease: "power3.out",
+                    ease: "power2.out",
                     duration: 1.25,
                     scrollTrigger: {
                         trigger: card,
@@ -60,8 +60,9 @@ const Projects = () => {
                 ">
                     Projects
                 </h1>
-                <p>Explore a collection of projects - Each project highlights some information and
-                    link to company website which shows high-quality, reliable, and scalable software solutions for business.</p>
+                <p className="text-2xl">
+                    Projects Aren't Just Work — It Reflects <span className="text-cyan-300">Passion, quality and reliability</span>.
+                </p>
             </div>
 
             <div className="w-full max-w-7xl mx-auto flex items-center justify-center">
@@ -72,14 +73,14 @@ const Projects = () => {
                             ref={(el) => (cardRef.current[i] = el)}
                             className="group relative p-6 rounded-2xl border border-gray-800 bg-gradient-to-br from-gray-900 via-gray-950 to-black hover:from-gray-800 hover:via-gray-900 hover:to-gray-950 transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.05)]"
                         >
-                            <h3 className="text-2xl font-bold mb-3 text-white">{project.name}</h3>
-                            <p className="text-gray-400 mb-4">{project.description}</p>
+                            <h3 className="text-lg font-semibold mb-3">{project.name}</h3>
+                            <p className="text-gray-400 text-sm text-justify mb-4 leading-normal tracking-wide">{project.description}</p>
 
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {project.tags.map((tag, idx) => (
                                     <span
                                         key={idx}
-                                        className="text-sm bg-gray-800 text-gray-300 px-2 py-1 rounded-lg"
+                                        className="text-sm bg-gray-800 text-gray-200 px-2 py-1 rounded-lg"
                                     >
                                         #{tag}
                                     </span>
