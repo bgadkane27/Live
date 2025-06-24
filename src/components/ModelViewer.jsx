@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars, useGLTF } from "@react-three/drei";
 
 const Model = () => {
-  const model = useGLTF("/models/planet/scene.gltf"); // put your model in public/
+  const model = useGLTF("/models/planet/scene.gltf"); 
 
   return <primitive 
   object={model.scene} 
@@ -23,6 +23,8 @@ const ModelViewer = () => {
       enableZoom={true}
       minPolarAngle={Math.PI / 2}
       maxPolarAngle={Math.PI / 2}
+      minDistance={2}
+      maxDistance={4}
       />
       <Model />
     </Canvas>
