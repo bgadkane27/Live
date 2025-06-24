@@ -1,11 +1,12 @@
-import { Hero, About, Skils, Projects, Experience, Audio, Contact } from "./components"
+import { Hero, About, Skills, Skill, Projects, Experience, Audio, Contact } from "./components"
 
 function App() {
   return (
     <div className="w-full min-h-screen overflow-hidden bg-black">
       <Hero />
       <About />
-      <Skils />
+      <Skill />
+      {/* <Skills /> */}
       <Projects />
       <Experience />
       <Contact />      

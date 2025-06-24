@@ -177,3 +177,22 @@ export const contactLinks = [
   },
 ];
 
+export const technicalSkills = [
+  "React",
+  "JavaScript",
+  "Node.js",
+  "GSAP",
+  "Tailwind CSS",
+  "MongoDB",
+  "Next.js",
+];
+
+export const softSkills = [
+  "Problem Solving",
+  "Time Management",
+  "Collaboration",
+  "Attention to Detail",
+  "Adaptability",
+  "Communication",
+];
+

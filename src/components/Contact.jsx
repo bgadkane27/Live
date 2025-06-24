@@ -69,13 +69,11 @@ const Contact = () => {
           Let's get in touch — I'm open for projects, collabs & opportunities.
         </p>
       </div>
-
-
       <div className="w-full max-w-7xl mx-auto">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 z-50">
           <div ref={leftRef} 
-          className="space-y-6 border rounded-2xl border-gray-800 bg-gray-950 px-4 py-4 bg-center"
-          style={{ backgroundImage: "url('/sections/left.svg')" }}
+          className="space-y-6 border rounded-2xl border-gray-800 px-4 py-4 bg-center bg-gradient-to-br from-gray-900 via-gray-950 to-black shadow-[0_0_25px_rgba(255,255,255,0.05)]"
+          // style={{ backgroundImage: "url('/sections/left.svg')" }}
           >
             {contactLinks.map((item) => (
               <a
