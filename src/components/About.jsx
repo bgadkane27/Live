@@ -17,46 +17,14 @@ const About = () => {
   useGSAP(() => {
     gsap.from(aboutRef.current, {
       y: 100,
-      opacity: 0,
-      skewX:10,
+      opacity: 0.2,
       duration: 1,
+      ease: "bounce",
       scrollTrigger: {
         trigger: aboutRef.current,
         start: "top 80%",
-        end: "bottom 20%",
         toggleActions: "play none none reverse",
       },
-    });
-  }, []);
-
-  useGSAP(() => {
-    cardsRef.current.forEach((card, i) => {
-      gsap.fromTo(
-        card,
-        {
-          opacity: 0,
-          y: 80,
-          scale: 0.85,
-          rotateX: 15,
-          skewY: 5,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          rotateX: 0,
-          skewY: 0,
-          duration: 1.25,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            end: "bottom 15%",
-            toggleActions: "play none none reverse",
-          },
-          delay: i * 0.25,
-        }
-      );
     });
   }, []);
 
@@ -117,8 +85,7 @@ const About = () => {
   return (
     <section
       ref={aboutRef}
-      className="w-full min-h-screen relative overflow-hidden bg-black flex flex-col px-6 py-24">
-      {/* Optional background video */}
+      className="w-full min-h-screen relative overflow-hidden flex flex-col px-8 py-14">
       <video
         autoPlay
         muted
@@ -127,18 +94,18 @@ const About = () => {
         className="absolute inset-0 w-full h-full object-cover opacity-40"
         src="/sections/section2.mp4"
       />
-      <div className="w-full max-w-7xl mx-auto z-10">
-        <div className="md:col-span-1 flex flex-col justify-center z-50">
-          <h1 className="
-          text-4xl sm:text-6xl font-extrabold mb-6 w-fit
-          bg-gradient-to-r
-          from-cyan-500 via-purple-500 to-pink-500 
-          text-transparent
-          bg-clip-text
-          inline-block
-          ">Introduction</h1>
-        </div>
-        <div className="flex flex-col items-end justify-end mb-2 sm:mb-0">
+      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-30 z-0"></div>
+      <div className="flex flex-col items-center justify-center">
+        <h2 className="text-5xl font-extrabold text-center mb-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-transparent bg-clip-text relative z-10">
+          Introduction
+        </h2>
+        <p className="text-center text-lg mb-14 relative z-10">
+          Once a banker, now a QA/QC engineer — committed to delivering quality and reliability in every project I undertake.
+        </p>
+      </div>
+      <div className="w-full max-w-7xl mx-auto p-4 z-10">
+        <div
+        className="flex flex-col items-end justify-end mb-2 sm:mb-0">
           <div className="flex flex-col gap-4 max-w-xs p-4 relative overflow-hidden rounded-xl border border-slate-700">
             <img
               src="/sections/left.svg"
@@ -218,7 +185,6 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-30 z-0"></div>
     </section>
   );
 };

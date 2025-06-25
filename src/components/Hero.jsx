@@ -14,7 +14,6 @@ gsap.registerPlugin(useGSAP);
 
 const Hero = () => {
   const heroRef = useRef();
-  const contentRef = useRef(null);
   const flairRefs = useRef([]);
   flairRefs.current = [];
 
@@ -121,8 +120,8 @@ const Hero = () => {
     });
 
     gsap.from(split.chars, {
-      // yPercent: 100,
-      xPercent: "random([-100, 100])",
+      yPercent: 40,
+      xPercent: "random([-50, 50])",
       ease: "back.out",
       autoAlpha: 0,
       stagger: 0.08,
@@ -151,10 +150,10 @@ const Hero = () => {
         </Canvas>
       </div>
       <div className="w-full min-h-screen flex flex-col justify-center items-center relative overflow-hidden pt-10 sm:pt-0">
-        <h2 className="uppercase text-2xl sm:text-4xl tracking-widest mb-6 text-center">
+        <h2 className="split-mine uppercase text-2xl sm:text-4xl tracking-widest mb-6 text-center">
           QA/QC Engineer
         </h2>
-        <div ref={contentRef} className="relative flex flex-col sm:block items-center w-full">
+        <div className="relative flex flex-col sm:block items-center w-full">
           <img
             src="/hero/profile.jpeg"
             alt="Me"
@@ -165,33 +164,32 @@ const Hero = () => {
           <p
             className="split-mine uppercase text-5xl sm:text-6xl md:text-[200px] leading-none text-center font-serif drop-shadow-xl drop-shadow-cyan-500/40"
           >
-            Divyansh
+            Baburao
           </p>
           {/* <img
             src="/hero/profile.jpeg"
             alt="Me"
-            className="hidden sm:block absolute w-56 md:w-72 mx-auto left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 rounded-4xl"
+            className="hidden sm:block absolute w-48 h-48 mx-auto left-1/3 top-1/3 z-10 rounded-full"
             data-aos="zoom-in"
             data-aos-duration="3000"
             delay="800"
           /> */}
           <p
-            // ref={textRef}
             className="split-mine uppercase text-5xl sm:text-6xl md:text-[200px] leading-none text-center font-serif drop-shadow-xl drop-shadow-pink-500/30">
             Adkane
           </p>
 
         </div>
-        <div className="text-xs sm:text-sm text-center sm:text-justify tracking-wider uppercase sm:absolute sm:right-10 sm:bottom-10 max-w-xs mt-8 sm:mt-0">
+        {/* <div className="text-xs sm:text-sm text-center sm:text-justify tracking-wider uppercase sm:absolute sm:right-10 sm:bottom-10 max-w-xs mt-8 sm:mt-0">
           I Design the test strategies that deliver bug-free, reliable and scalable systems.
-        </div>
+        </div> */}
         {FLAIR_IMAGES.map((src, i) => (
           <img
             key={i}
             ref={addToFlairRefs}
             className="flair w-full absolute z-50"
             src={src}
-            alt=""
+            alt="flair images"
           />
         ))}
       </div>
