@@ -1,15 +1,17 @@
-import { Hero, About, Skills, Skill, Projects, Experience, Audio, Contact } from "./components"
+import { Hero, About, Skill, Projects, Experience, Audio, Contact, Tech } from "./components"
+import Main from "./components/Main"
 
 function App() {
   return (
     <div className="w-full min-h-screen overflow-hidden bg-black">
-      <Hero />
+      {/* <Hero /> */}
+      <Main />
       <About />
       <Skill />
-      {/* <Skills /> */}
+      <Tech />      
       <Projects />
       <Experience />
-      <Contact />      
+      <Contact />
       <Audio />
     </div>
   )

@@ -14,31 +14,19 @@ export const FLAIR_IMAGES = [
   "/wiggle/13.png",  
 ];
 
-import left from "/sections/left.svg"
-import right from "/sections/right.svg"
-
-export const stats =[
-  {
-    id: 1,
-    background: right,
-    info: "A passionate QA/QC Engineer with a sharp eye for quality, precision, and software reliability.",
-  },
-  {
-    id: 2,
-    background: left,
-    info: "Behind every great product is a robust quality strategy. I specialize in designing those strategies — ensuring every system I test is scalable, reliable, and flawless. Precision isn't just a requirement for me, it's a mindset.",
-  },
-  {
-    id: 3,
-    background: right,
-    info: "Quality isn't a task — it's a discipline. I build reliable systems through rigorous testing and precision-driven processes.",
-  },
-  {
-    id: 4,
-    background: left,
-    info: "I'am working as a QA/QC Engineer in the ERP/HRMS enterprise level applications for 3+ years.",
-  },
-]
+import css from "/tech/css.png";
+import docker from "/tech/docker.png";
+import figma from "/tech/figma.png";
+import git from "/tech/git.png";
+import html from "/tech/html.png";
+import javascript from "/tech/javascript.png";
+import mongodb from "/tech/mongodb.png";
+import nodejs from "/tech/nodejs.png";
+import reactjs from "/tech/reactjs.png";
+import redux from "/tech/redux.png";
+import tailwind from "/tech/tailwind.png";
+import typescript from "/tech/typescript.png";
+import threejs from "/tech/threejs.svg";
 
 export const experiences = [
   {
@@ -194,5 +182,60 @@ export const softSkills = [
   "Attention to Detail",
   "Adaptability",
   "Communication",
+];
+
+export const technologies = [
+  {
+    name: "HTML 5",
+    icon: html,
+  },
+  {
+    name: "CSS 3",
+    icon: css,
+  },
+  {
+    name: "JavaScript",
+    icon: javascript,
+  },
+  {
+    name: "TypeScript",
+    icon: typescript,
+  },
+  {
+    name: "React JS",
+    icon: reactjs,
+  },
+  {
+    name: "Redux Toolkit",
+    icon: redux,
+  },
+  {
+    name: "Tailwind CSS",
+    icon: tailwind,
+  },
+  {
+    name: "Node JS",
+    icon: nodejs,
+  },
+  {
+    name: "MongoDB",
+    icon: mongodb,
+  },
+  {
+    name: "Three JS",
+    icon: threejs,
+  },
+  {
+    name: "git",
+    icon: git,
+  },
+  {
+    name: "figma",
+    icon: figma,
+  },
+  {
+    name: "docker",
+    icon: docker,
+  },
 ];
 

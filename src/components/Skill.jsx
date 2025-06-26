@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { technicalSkills, softSkills } from "../constants";
 import { useGSAP } from "@gsap/react";
-import SkillsModel from "./SkillsModel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,22 +48,17 @@ const Skill = () => {
             ref={sectionRef}
             className="w-full min-h-screen mx-auto px-8 py-12 relative overflow-hidden flex flex-col"
         >
-            {/* 3D model background */}
-            {/* <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <SkillsModel />
-      </div> */}
             <div className="flex flex-col items-center justify-center">
                 <h2 className="text-5xl font-extrabold text-center mb-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-transparent bg-clip-text relative z-10">
                     Skills
                 </h2>
                 <p className="text-center text-gray-400 text-lg mb-14 relative z-10">
-                    Technical strengths & soft skills that shape my professional journey.
+                    Soft skills that shape my professional journey.
                 </p>
             </div>
-
             <div className="max-w-7xl mx-auto">
                 <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div>
+                    {/* <div>
                         <h3 className="text-2xl font-bold mb-5">Technical Skills</h3>
                         <div className="grid grid-cols-2 gap-4">
                             {technicalSkills.map((skill, i) => (
@@ -78,7 +72,7 @@ const Skill = () => {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </div> */}
                     <div>
                         <h3 className="text-2xl font-bold mb-5">Soft Skills</h3>
                         <div className="grid grid-cols-2 gap-4">

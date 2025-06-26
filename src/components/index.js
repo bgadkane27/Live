@@ -7,7 +7,7 @@ import Audio from "./Audio"
 import ThreeModel from "./ThreeModel"
 import ToggleButton from "./ToggleButton"
 import Skill from "./Skill"
-import Skills from "./Skills"
 import Projects from "./Projects"
+import Tech from "./Tech"
 
-export {Hero, About,Skills,Skill, Projects, Experience, Feedback, Contact, Audio, ThreeModel, ToggleButton};
+export { Hero, About, Skill, Projects, Tech, Experience, Feedback, Contact, Audio, ThreeModel, ToggleButton };
