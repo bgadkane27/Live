@@ -295,7 +295,6 @@ const About = () => {
         src="/sections/section2.mp4"
       />
       <div className="absolute top-0 left-0 w-full h-full bg-black opacity-80 z-0"></div>
-
       <div className="flex flex-col items-center justify-center relative z-10">
         <h2 className="text-5xl font-extrabold text-center mb-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-transparent bg-clip-text">
           Introduction
@@ -352,7 +351,7 @@ const About = () => {
               <Text />
             </a>
             <h1 ref={textRef} className="split-line text-justify z-10">
-              Behind every great product is a robust quality strategy. I specialize in designing those strategies — ensuring every system I test is scalable, reliable, and flawless. Precision isn't just a requirement for me, it's a mindset.
+              Behind every great product is a robust quality strategy. I specialize in designing those strategies — ensuring every project I test is scalable, reliable, and flawless. Precision isn't just a requirement for me, it's a mindset.
             </h1>
           </div>
         </div>
@@ -376,7 +375,7 @@ const About = () => {
             <AudioWaveform />
           </a>
           <h1 ref={textRef} className="split-me text-justify z-10">
-            Quality isn't a task — it's a discipline. I build reliable systems through rigorous testing and precision-driven processes.
+            Quality isn't a task — it's a discipline. I <br/> build reliable systems through rigorous <br /> testing and precision-driven processes.
           </h1>
         </div>
 
@@ -401,7 +400,7 @@ const About = () => {
               <Text />
             </a>
             <h1 ref={textRef} className="split-words text-justify z-10">
-              I'm working as a QA/QC Engineer in ERP/HRMS enterprise-level applications for 3+ years.
+              QA/QC Engineer with 3+ years of hands-on experience in ensuring the quality, reliability, and performance of ERP and HRMS enterprise-level applications.
             </h1>
           </div>
         </div>

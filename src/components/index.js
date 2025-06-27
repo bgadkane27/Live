@@ -1,7 +1,6 @@
 import Hero from "./Hero"
 import About from "./About"
 import Experience from "./Experience"
-import Feedback from "./Feedback"
 import Contact from "./Contact"
 import Audio from "./Audio"
 import ThreeModel from "./ThreeModel"
@@ -10,4 +9,4 @@ import Skill from "./Skill"
 import Projects from "./Projects"
 import Tech from "./Tech"
 
-export { Hero, About, Skill, Projects, Tech, Experience, Feedback, Contact, Audio, ThreeModel, ToggleButton };
+export { Hero, About, Skill, Projects, Tech, Experience, Contact, Audio, ThreeModel, ToggleButton };

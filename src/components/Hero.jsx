@@ -1,200 +1,115 @@
-import { useRef, useEffect } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FLAIR_IMAGES } from "../constants";
+import { useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
-import { ThreeModel } from "../components"
-import { SplitText } from "gsap/SplitText";
-
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(SplitText);
-gsap.registerPlugin(useGSAP);
+import ThreeModel from "./ThreeModel";
+import gsap from "gsap";
 
 const Hero = () => {
-  const heroRef = useRef();
-  const flairRefs = useRef([]);
-  flairRefs.current = [];
+    const stop1Ref = useRef(null);
+    const stop2Ref = useRef(null);
+    const logoRef = useRef(null);
+    const imgRefs = useRef([]);
 
-  // Add flair image refs
-  const addToFlairRefs = (el) => {
-    if (el && !flairRefs.current.includes(el)) {
-      flairRefs.current.push(el);
-    }
-  };
+    useEffect(() => {
+        const handleDragStart = (e) => {
+            e.dataTransfer.setData("text/plain", "color");
+        };
 
-  const mousePos = useRef({ x: 0, y: 0 });
-  const lastMousePos = useRef({ x: 0, y: 0 });
-  const cachedMousePos = useRef({ x: 0, y: 0 });
-  const indexRef = useRef(0);
-  const gap = 100;
-  const wrapper = gsap.utils.wrap(0, 18);
+        const handleDragOver = (e) => {
+            e.preventDefault();
+        };
 
-  const playAnimation = (shape) => {
-    let tl = gsap.timeline();
-    tl.from(shape, {
-      opacity: 0,
-      scale: 0,
-      ease: "elastic.out(1,0.3)",
-    })
-      .to(
-        shape,
-        {
-          rotation: gsap.utils.random(-360, 360),
-        },
-        "<"
-      )
-      .to(
-        shape,
-        {
-          y: "120vh",
-          ease: "back.in(.4)",
-          duration: 1.5,
-        },
-        0
-      );
-  };
+        const handleDrop = (e) => {
+            e.preventDefault();
+            const randomColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
 
-  const animateImage = () => {
-    let wrappedIndex = wrapper(indexRef.current);
-    let img = flairRefs.current[wrappedIndex];
+            if (stop1Ref.current && stop2Ref.current) {
+                const tl = gsap.timeline();
+                tl.to(stop1Ref.current, {
+                    duration: 0.8,
+                    attr: { "stop-color": randomColor },
+                    ease: "power2.out",
+                }).to(
+                    stop2Ref.current,
+                    {
+                        duration: 0.8,
+                        attr: { "stop-color": randomColor },
+                        ease: "power2.out",
+                    },
+                    "<"
+                );
+            }
+        };
 
-    gsap.killTweensOf(img);
+        imgRefs.current.forEach((img) => {
+            if (img) {
+                img.draggable = true;
+                img.addEventListener("dragstart", handleDragStart);
+            }
+        });
 
-    gsap.set(img, {
-      clearProps: "all",
-    });
+        const logo = logoRef.current;
+        if (logo) {
+            logo.addEventListener("dragover", handleDragOver);
+            logo.addEventListener("drop", handleDrop);
+        }
 
-    gsap.set(img, {
-      opacity: 1,
-      left: mousePos.current.x,
-      top: mousePos.current.y,
-      xPercent: -50,
-      yPercent: -50,
-    });
+        return () => {
+            imgRefs.current.forEach((img) => {
+                if (img) {
+                    img.removeEventListener("dragstart", handleDragStart);
+                }
+            });
+            if (logo) {
+                logo.removeEventListener("dragover", handleDragOver);
+                logo.removeEventListener("drop", handleDrop);
+            }
+        };
+    }, []);
 
-    playAnimation(img);
+    return (
+        <section className="w-full h-screen max-h-[100vw] flex flex-col items-center justify-center relative">
+            <svg
+                ref={logoRef}
+                className="logo w-[100%] max-w-[1280px] z-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1280 360"
+            >
+                <linearGradient id="gradient" gradientTransform="rotate(-25)">
+                    <stop ref={stop1Ref} offset="0%" stopColor="rgb(255, 252, 225)" />
+                    <stop ref={stop2Ref} offset="70%" stopColor="rgb(255, 252, 225)" />
+                </linearGradient>
+                <path
+                    fill="url(#gradient)"
+                    d="M357.906 118.496V124H266.13V118.496H278.546V34.528H313.362C319.42 34.528 324.626 35.2533 328.978 36.704C333.415 38.1547 336.743 40.1173 338.962 42.592C342.972 47.2 344.978 52.4053 344.978 58.208C344.978 65.2053 342.716 70.4107 338.194 73.824C336.658 75.0187 335.591 75.7867 334.994 76.128C334.396 76.384 333.33 76.8533 331.794 77.536C337.34 78.7307 341.735 81.248 344.978 85.088C348.306 88.8427 349.97 93.536 349.97 99.168C349.97 107.616 346.642 114.059 339.986 118.496H357.906ZM298.514 107.104H312.21C317.927 107.104 322.194 106.421 325.01 105.056C327.911 103.605 329.362 100.832 329.362 96.736C329.362 92.5547 327.826 89.824 324.754 88.544C321.767 87.1787 316.946 86.496 310.29 86.496H298.514V107.104ZM298.514 70.752H307.986C313.532 70.752 317.628 70.1547 320.274 68.96C323.004 67.7653 324.37 65.2053 324.37 61.28C324.37 57.2693 323.132 54.624 320.658 53.344C318.183 52.064 314.002 51.424 308.114 51.424H298.514V70.752ZM472.729 118.496V124H439.065L430.745 104.672H393.241L384.921 124H351.256V118.496H365.977L402.329 34.528H421.657L457.881 118.496H472.729ZM412.057 61.152L400.793 87.136H423.193L412.057 61.152ZM556.456 118.496V124H464.68V118.496H477.096V34.528H511.912C517.97 34.528 523.176 35.2533 527.528 36.704C531.965 38.1547 535.293 40.1173 537.512 42.592C541.522 47.2 543.528 52.4053 543.528 58.208C543.528 65.2053 541.266 70.4107 536.744 73.824C535.208 75.0187 534.141 75.7867 533.544 76.128C532.946 76.384 531.88 76.8533 530.344 77.536C535.89 78.7307 540.285 81.248 543.528 85.088C546.856 88.8427 548.52 93.536 548.52 99.168C548.52 107.616 545.192 114.059 538.536 118.496H556.456ZM497.064 107.104H510.76C516.477 107.104 520.744 106.421 523.56 105.056C526.461 103.605 527.912 100.832 527.912 96.736C527.912 92.5547 526.376 89.824 523.304 88.544C520.317 87.1787 515.496 86.496 508.84 86.496H497.064V107.104ZM497.064 70.752H506.536C512.082 70.752 516.178 70.1547 518.824 68.96C521.554 67.7653 522.92 65.2053 522.92 61.28C522.92 57.2693 521.682 54.624 519.208 53.344C516.733 52.064 512.552 51.424 506.664 51.424H497.064V70.752ZM658.991 118.496V124H562.863V118.496H588.335C577.839 111.499 572.591 100.192 572.591 84.576V34.528H592.559V83.936C592.559 91.104 594.223 96.7787 597.551 100.96C600.879 105.056 605.359 107.104 610.991 107.104C616.623 107.104 621.06 105.056 624.303 100.96C627.631 96.7787 629.295 91.104 629.295 83.936V34.528H649.263V84.576C649.263 100.192 644.057 111.499 633.647 118.496H658.991ZM676.396 118.496V34.528H710.316C724.225 34.528 734.124 36.8747 740.012 41.568C745.985 46.2613 748.972 53.8133 748.972 64.224C748.972 78.56 743.297 87.8187 731.948 92L750.636 118.496H762.668V124H730.028L710.188 95.456H696.364V124H663.98V118.496H676.396ZM710.956 78.176C717.782 78.176 722.433 77.0667 724.908 74.848C727.382 72.6293 728.62 69.1307 728.62 64.352C728.62 59.488 727.34 56.16 724.78 54.368C722.22 52.576 717.74 51.68 711.34 51.68H696.364V78.176H710.956ZM873.203 118.496V124H839.539L831.219 104.672H793.715L785.395 124H751.731V118.496H766.451L802.803 34.528H822.131L858.355 118.496H873.203ZM812.531 61.152L801.267 87.136H823.667L812.531 61.152ZM972.291 118.496V124H866.562V118.496H895.107C888.109 114.485 882.563 108.981 878.467 101.984C874.456 94.9867 872.451 87.2213 872.451 78.688C872.451 65.5467 876.973 54.5813 886.019 45.792C895.064 36.9173 906.2 32.48 919.427 32.48C932.653 32.48 943.789 36.9173 952.835 45.792C961.88 54.5813 966.403 65.5467 966.403 78.688C966.403 87.2213 964.355 94.9867 960.259 101.984C956.163 108.981 950.659 114.485 943.747 118.496H972.291ZM946.051 78.816C946.051 70.7947 943.491 63.968 938.371 58.336C933.251 52.704 926.936 49.888 919.427 49.888C912.003 49.888 905.731 52.704 900.611 58.336C895.491 63.968 892.931 70.7947 892.931 78.816C892.931 86.752 895.491 93.536 900.611 99.168C905.731 104.715 912.003 107.488 919.427 107.488C926.936 107.488 933.251 104.715 938.371 99.168C943.491 93.536 946.051 86.752 946.051 78.816ZM1012.5 118.496V124H978.713V118.496H1012.5ZM447.354 274.496V280H413.69L405.37 260.672H367.866L359.546 280H325.881V274.496H340.602L376.954 190.528H396.282L432.506 274.496H447.354ZM386.682 217.152L375.418 243.136H397.818L386.682 217.152ZM540.809 274.496V280H439.304V274.496H451.72V190.528H483.336C499.294 190.528 511.539 194.453 520.072 202.304C528.606 210.069 532.872 221.035 532.872 235.2C532.872 254.315 525.448 267.413 510.6 274.496H540.809ZM484.36 262.336C493.491 262.336 500.488 260.032 505.352 255.424C510.302 250.816 512.776 244.117 512.776 235.328C512.776 226.539 510.302 219.797 505.352 215.104C500.488 210.325 492.979 207.936 482.824 207.936H471.688V262.336H484.36ZM601.125 230.08L632.741 274.496H643.365V280H613.413L587.173 244.672L578.213 254.656V280H547.237V274.496H558.245V190.528H578.213V227.264L612.005 190.528H636.709L601.125 230.08ZM752.929 274.496V280H719.265L710.945 260.672H673.441L665.121 280H631.457V274.496H646.177L682.529 190.528H701.857L738.081 274.496H752.929ZM692.257 217.152L680.993 243.136H703.393L692.257 217.152ZM757.295 274.496V190.528H775.983L819.887 248.128V190.528H839.855V274.496H852.271V280H819.887L777.263 223.936V280H744.879V274.496H757.295ZM868.321 274.496V190.528H932.833V208.32H888.289V226.752H928.353V243.776H888.289V262.336H934.241V274.496H946.657V280H855.904V274.496H868.321Z"
+                />
+            </svg>
 
-    indexRef.current++;
-  };
+            <div className="absolute inset-0 z-0">
+                <Canvas camera={{ position: [0, -10, 0], fov: 10 }}>
+                    <ambientLight intensity={1} />
+                    <directionalLight position={[10, 2, 1]} intensity={1} />
+                    <Stars radius={50} depth={50} count={8000} factor={4} />
+                    <ThreeModel />
+                    <OrbitControls enableZoom={false} autoRotate minDistance={5} maxDistance={80} />
+                </Canvas>
+            </div>
 
-  const ImageTrail = () => {
-    let travelDistance = Math.hypot(
-      lastMousePos.current.x - mousePos.current.x,
-      lastMousePos.current.y - mousePos.current.y
+            <div className="img-group text-center z-50">
+                <p className="mb-4 text-sm text-gray-400">
+                    [ drag below image over name to change color ]
+                </p>
+                <div className="flex flex-wrap justify-center items-center gap-4">
+                    <img
+                        ref={(el) => (imgRefs.current[0] = el)}
+                        alt="drag-icon"
+                        src="/wiggle/1.png"
+                        className="relative w-[25%] max-w-[150px] cursor-grab"
+                    />
+                </div>
+            </div>
+        </section>
     );
-
-    cachedMousePos.current.x = gsap.utils.interpolate(
-      cachedMousePos.current.x || mousePos.current.x,
-      mousePos.current.x,
-      0.1
-    );
-    cachedMousePos.current.y = gsap.utils.interpolate(
-      cachedMousePos.current.y || mousePos.current.y,
-      mousePos.current.y,
-      0.1
-    );
-
-    if (travelDistance > gap) {
-      animateImage();
-      lastMousePos.current = { ...mousePos.current };
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("mousemove", (e) => {
-      mousePos.current = { x: e.clientX, y: e.clientY };
-    });
-
-    gsap.ticker.add(ImageTrail);
-
-    return () => {
-      gsap.ticker.remove(ImageTrail);
-    };
-  }, []);
-
-  useGSAP(() => {
-    let split = SplitText.create(".split-mine", {
-      type: 'chars',
-    });
-
-    gsap.from(split.chars, {
-      yPercent: 40,
-      xPercent: "random([-50, 50])",
-      ease: "back.out",
-      autoAlpha: 0,
-      stagger: 0.08,
-      duration: 1,
-    });
-  }, []);
-
-
-  return (
-    <section
-      ref={heroRef}
-      className="w-full h-screen relative"
-    >
-      <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, -10, 0], fov: 10 }}>
-          <ambientLight intensity={1} />
-          <directionalLight position={[10, 2, 1]} intensity={1} />
-          <Stars radius={50} depth={50} count={5000} factor={4} />
-          <ThreeModel />
-          <OrbitControls
-            enableZoom={false}
-            autoRotate
-            minDistance={5}
-            maxDistance={80}
-          />
-        </Canvas>
-      </div>
-      <div className="w-full min-h-screen flex flex-col justify-center items-center relative overflow-hidden pt-10 sm:pt-0">
-        <h2 className="split-mine uppercase text-2xl sm:text-4xl tracking-widest mb-6 text-center">
-          QA/QC Engineer
-        </h2>
-        <div className="relative flex flex-col sm:block items-center w-full">
-          <img
-            src="/hero/profile.jpeg"
-            alt="Me"
-            className="block sm:hidden w-40 h-40 mx-auto mb-6 rounded-full"
-            data-aos="zoom-in"
-            data-aos-duration="2000"
-          />
-          <p
-            className="split-mine uppercase text-5xl sm:text-6xl md:text-[200px] leading-none text-center font-serif drop-shadow-xl drop-shadow-cyan-500/40"
-          >
-            Baburao
-          </p>
-          {/* <img
-            src="/hero/profile.jpeg"
-            alt="Me"
-            className="hidden sm:block absolute w-48 h-48 mx-auto left-1/3 top-1/3 z-10 rounded-full"
-            data-aos="zoom-in"
-            data-aos-duration="3000"
-            delay="800"
-          /> */}
-          <p
-            className="split-mine uppercase text-5xl sm:text-6xl md:text-[200px] leading-none text-center font-serif drop-shadow-xl drop-shadow-pink-500/30">
-            Adkane
-          </p>
-
-        </div>
-        {/* <div className="text-xs sm:text-sm text-center sm:text-justify tracking-wider uppercase sm:absolute sm:right-10 sm:bottom-10 max-w-xs mt-8 sm:mt-0">
-          I Design the test strategies that deliver bug-free, reliable and scalable systems.
-        </div> */}
-        {FLAIR_IMAGES.map((src, i) => (
-          <img
-            key={i}
-            ref={addToFlairRefs}
-            className="flair w-full absolute z-50"
-            src={src}
-            alt="flair images"
-          />
-        ))}
-      </div>
-    </section>
-  );
 };
 
 export default Hero;

@@ -59,7 +59,7 @@ const Experience = () => {
           inline-block
           ">Experience</h1>
           <p className="mb-6 text-2xl">
-            It's not a just about existence. Its about impact and cultivating a legacy that transcends time.
+            It's not a just about existence. Its about <strong className="text-[#747bff] font-extrabold">impact and cultivating</strong> a legacy that transcends time.
           </p>
         </div>
         <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">

@@ -154,13 +154,13 @@ export const contactLinks = [
   {
     id: 3,
     label: "LinkedIn",
-    value: "linkedin.com/in/baburaoadkane",
+    value: "linkedin.com/bgadkane",
     link: "https://www.linkedin.com/in/baburao-adkane-443476250/",
   },
   {
     id: 4,
     label: "GitHub",
-    value: "github.com/bgadkane27",
+    value: "github.com/bgadkane",
     link: "https://github.com/bgadkane27",
   },
 ];
@@ -176,12 +176,16 @@ export const technicalSkills = [
 ];
 
 export const softSkills = [
-  "Problem Solving",
-  "Time Management",
-  "Collaboration",
-  "Attention to Detail",
-  "Adaptability",
-  "Communication",
+  "Attentive",
+  "Strong Analytical",
+  "Excellent Communication",
+  "Excellent Collaboration",
+  "Curious and Proactive",
+  "Strong Time Management",
+  "Patience and Perseverance",
+  "User-Centric Mindset",
+  "Process Oriented"
+
 ];
 
 export const technologies = [

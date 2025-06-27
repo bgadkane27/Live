@@ -62,7 +62,7 @@ const Projects = () => {
                     Projects
                 </h1>
                 <p className="text-2xl mb-2">
-                    Projects Aren't Just Work — It Reflects <span className="text-cyan-300">Passion, quality and reliability</span>.
+                    Projects Aren't Just Work — It Reflects <strong className="text-[#747bff] font-bold">Passion, quality and reliability</strong>.
                 </p>
             </div>
 
