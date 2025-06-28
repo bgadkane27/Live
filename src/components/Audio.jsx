@@ -19,7 +19,7 @@ const Audio = () => {
     }, []);
 
     return (
-        <div className="fixed top-6 right-14 z-50">
+        <div className="fixed top-4 right-32 z-500">
             <div className="relative group">
                 <ToggleButton isOn={isPlaying} onToggle={toggleAudio} />
             </div>

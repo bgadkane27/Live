@@ -39,7 +39,7 @@ const Footer = () => {
         >
             <div className="w-full max-w-7xl flex items-center justify-between mx-auto px-4">
                 <div>
-                    <p className="text-gray-300 text-xs tracking-wide">&copy; 2025 Baburao Adkane. Made with 💖 towards design.</p>
+                    <p className="text-gray-300 text-xs tracking-wide">&copy; 2025 Baburao Adkane. Made With 💖 Towards Web Development.</p>
                 </div>
                 <div>
                     {weather ? (
